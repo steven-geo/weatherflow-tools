@@ -1,0 +1,17 @@
+[Unit]
+Description=WeatherFlow Monitor
+Wants=network.target
+After=network.target
+StartLimitIntervalSec=900
+StartLimitBurst=5
+
+[Service]
+ExecStartPre=/bin/sleep 2
+ExecStart=/usr/bin/python3 -O "/opt/weatherflow-tools/wf-monitor.py"
+Restart=always
+KillSignal=SIGINT
+# User=
+# Group=
+
+[Install]
+WantedBy=multi-user.target
